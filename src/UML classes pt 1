@@ -13,10 +13,7 @@ package "entidades" {
     + getNome(): String
     + getCpf(): String
     + getDataNascimento(): LocalDate
-    + adicionarConsulta(Consulta consulta): void
-    + adicionarExame(Exame exame): void
-    + getPagamentosPendentes(): List<Pagamento>
-    + verificarConsultaNoMesmoDia(LocalDate dataConsulta): boolean
+  
   }
 
   class Paciente extends Pessoa {
@@ -86,9 +83,12 @@ package "entidades" {
 
 package "servicos" {
   class AgendamentoService {
+    - consultas: List<Consulta>
     + agendarConsulta(Consulta consulta): void
-    + verificarDisponibilidade(Medico medico, LocalDate data, LocalTime horario): boolean
-    + validarConsulta(Paciente paciente, Medico medico, LocalDate dataConsulta, LocalTime horario, String especialidade): void
+    +getConsultasPorPessoa(pessoa: Pessoa): List<Consulta>
+    +mostrarHistoricoConsultas(pessoa: Pessoa): void
+    *+ verificarDisponibilidade(Medico medico, LocalDate data, LocalTime horario): boolean
+    *+ validarConsulta(Paciente paciente, Medico medico, LocalDate dataConsulta, LocalTime horario, String especialidade): void
   }
 
   class PagamentoService {
