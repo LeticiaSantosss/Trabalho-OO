@@ -1,4 +1,3 @@
-// Diagram in UML Notation with Polymorphism and Inheritance
 @startuml
 
 package "entidades" {
@@ -9,11 +8,11 @@ package "entidades" {
     - List<Consulta> historicoConsultas
     - List<Exame> historicoExames
     - List<Pagamento> pagamentos
+    - List<Notificacao> notificacoes
     + Pessoa(String nome, String cpf, LocalDate dataNascimento)
     + getNome(): String
     + getCpf(): String
     + getDataNascimento(): LocalDate
-  
   }
 
   class Paciente extends Pessoa {
@@ -41,6 +40,7 @@ package "entidades" {
     - List<Exame> examesPrescritos
     - List<String> medicamentosPrescritos
     - double valorConsulta
+    - List<Notificacao> notificacoes
     + Consulta(LocalDate dataConsulta, LocalTime horarioInicio, int duracaoMinutos, Paciente paciente, Medico medico)
     + prescreverExame(Exame exame): void
     + prescreverMedicamento(String medicamento): void
@@ -85,8 +85,8 @@ package "servicos" {
   class AgendamentoService {
     - consultas: List<Consulta>
     + agendarConsulta(Consulta consulta): void
-    +getConsultasPorPessoa(pessoa: Pessoa): List<Consulta>
-    +mostrarHistoricoConsultas(pessoa: Pessoa): void
+    + getConsultasPorPessoa(pessoa: Pessoa): List<Consulta>
+    + mostrarHistoricoConsultas(pessoa: Pessoa): void
     *+ verificarDisponibilidade(Medico medico, LocalDate data, LocalTime horario): boolean
     *+ validarConsulta(Paciente paciente, Medico medico, LocalDate dataConsulta, LocalTime horario, String especialidade): void
   }
@@ -108,7 +108,9 @@ Pessoa <|-- Medico
 Pessoa "1" --> "*" Consulta
 Pessoa "1" --> "*" Exame
 Pessoa "1" --> "*" Pagamento
+Pessoa "1" --> "*" Notificacao
 Consulta "1" --> "*" Exame
 Consulta "1" --> "1" Prescricao
+Consulta "1" --> "*" Notificacao
 
 @enduml
