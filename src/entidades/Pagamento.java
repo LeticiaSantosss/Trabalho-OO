@@ -2,20 +2,24 @@ package entidades;
 
 public class Pagamento {
 private double valor;
-private boolean statusPagamento ;
+private static boolean statusPagamento ;
 
 
 Pagamento(double valor){
 	this.valor = valor;
-	this.statusPagamento = true;
+	Pagamento.statusPagamento = true;
 	
+}
+
+public Pagamento() {
+	// TODO Auto-generated constructor stub
 }
 
 public double getValor() {
     return valor;
 }
 
-public boolean getStatusPagamento() {
+public static boolean getStatusPagamento() {
     return statusPagamento;
 }
 public void realizarPagamento () {

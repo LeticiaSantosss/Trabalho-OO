@@ -6,10 +6,12 @@ import java.util.List;
 public class Pessoa {
 private String nome, 
 				CPF;
-LocalDate dataNascimento;
+private LocalDate dataNascimento;
 private List<Consulta>historicoConsultas;
 private List<Exame>historicoExames ;
 private List<Pagamento>historicoPagamentos;
+
+Pessoa(){}
 Pessoa(String nome, String Cpf, LocalDate dataNascimento){
 	this.nome= nome;
 	this.CPF= Cpf;
@@ -18,6 +20,8 @@ Pessoa(String nome, String Cpf, LocalDate dataNascimento){
 	 this.setHistoricoExames(new ArrayList<>());  // Inicialização de historicoExames
      this.historicoPagamentos = new ArrayList<>(); 
 }
+
+
 
 public String getNome() {
     return nome;
@@ -34,9 +38,12 @@ public String getCPF() {
 public void setCPF(String CPF) {
     this.CPF = CPF;
 }
-public LocalDate getDataNascimento() {
+ LocalDate getDataNascimento() {
     return dataNascimento;
 }
+ public void  setDataNascimento( LocalDate dataNascimento ) {
+	    this.dataNascimento= dataNascimento;
+	}
 public void adicionarConsulta(Consulta consulta) {
 	this.historicoConsultas.add(consulta);
 }
@@ -51,7 +58,7 @@ public void adicionarPagamento (Pagamento pagamento) {
 public List<Pagamento>  getPagamentosPendentes(){
 	List <Pagamento> pendentes = new ArrayList <>();
 	for(Pagamento pagamento: historicoPagamentos) {
-		if(pagamento.getStatusPagamento())  
+		if(Pagamento.getStatusPagamento())  
 			pendentes.add(pagamento);
 		
 	}return pendentes;

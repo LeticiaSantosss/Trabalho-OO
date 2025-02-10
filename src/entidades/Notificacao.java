@@ -1,30 +1,28 @@
 package entidades;
-
-import java.time.LocalDate;
-
 public class Notificacao {
-private String mensagem;
-private LocalDate dataEnvio;
 
-public void notificacao(String mensagem, LocalDate dataEnvio) {
-	this.setMensagem(mensagem);
-	this.setDataEnvio(dataEnvio);
-}
+    // Método para enviar uma notificação de sucesso
+    public static void notificarSucesso(String mensagem) {
+        System.out.println("SUCESSO: " + mensagem);
+        // Aqui você pode adicionar mais lógica para enviar notificações (email, SMS, etc.)
+    }
 
-public String getMensagem() {
-	return mensagem;
-}
+    // Método para enviar uma notificação de erro
+    public static void notificarErro(String mensagem) {
+        System.out.println("ERRO: " + mensagem);
+        // Aqui você pode adicionar mais lógica para enviar notificações de erro
+    }
 
-public void setMensagem(String mensagem) {
-	this.mensagem = mensagem;
-}
+    // Método para notificar o agendamento de uma consulta
+    public static void notificarAgendamento(Consulta consulta) {
+        String mensagem = "Consulta agendada com " + consulta.getMedico().getNome() + 
+                          " para o dia " + consulta.getDataConsulta().toString() + 
+                          " às " + consulta.getHorarioConsulta().toString();
+        notificarSucesso(mensagem);
+    }
 
-public LocalDate getDataEnvio() {
-	return dataEnvio;
-}
-
-public void setDataEnvio(LocalDate dataEnvio) {
-	this.dataEnvio = dataEnvio;
-}
-
+    // Método para notificar um erro de agendamento
+    public static void notificarErroAgendamento(String erro) {
+        notificarErro("Erro ao agendar consulta: " + erro);
+    }
 }

@@ -2,9 +2,9 @@ package entidades;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-public class TestePagamento {
+public class TestedasClasses {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         // Criando objetos de exemplo com os parâmetros corretos de acordo com o UML
 
         // Criando um paciente
@@ -45,7 +45,7 @@ public class TestePagamento {
 
         System.out.println("\nHistórico de Pagamentos do Paciente:");
         for (Pagamento p : paciente.getHistoricoPagamentos()) {
-            System.out.println("Pagamento: " + p.getValor() + " - Status: " + p.getStatusPagamento());
+            System.out.println("Pagamento: " + p.getValor() + " - Status: " + Pagamento.getStatusPagamento());
         }
 
         // Verificando se há pagamentos pendentes

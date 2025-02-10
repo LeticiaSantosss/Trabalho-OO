@@ -3,7 +3,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 
-public class Consulta  {
+public class Consulta extends Medico {
 private LocalDate dataConsulta;
  private LocalTime horarioConsulta;
  private int duração;
@@ -19,7 +19,17 @@ private LocalDate dataConsulta;
 	 this.paciente = paciente;
 	 this.medico = medico; 
  }
-
+ public boolean verificarDisponibilidadeMedico() {
+     return medico.getHistoricoConsultasAtendidas().stream()
+         .noneMatch(c -> c.getDataConsulta().equals(this.dataConsulta) && c.getHorarioConsulta().equals(this.horarioConsulta));
+ }
+ public boolean verificarDisponibilidadePaciente() {
+     return paciente.getHistoricoConsultas().stream()
+         .noneMatch(c -> c.getDataConsulta().equals(this.dataConsulta));
+ }
+ public boolean verificarEspecialidadeRequerida(String especialidadeRequerida) {
+     return medico.verificarEspecialidade(especialidadeRequerida);
+ }
 public void prescreverExame (Exame exame) {
 	 this.examesPrescritos.add(exame);
  }
@@ -50,5 +60,12 @@ public double getValorConsulta() {
 public void setValorConsulta(double valorConsulta) {
 	this.valorConsulta = valorConsulta;
 }
- 
+public Medico getMedico() {
+    return this.medico;
 }
+
+public Paciente getPaciente() {
+    return this.paciente;
+}
+}
+
