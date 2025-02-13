@@ -38,7 +38,7 @@ public String getCPF() {
 public void setCPF(String CPF) {
     this.CPF = CPF;
 }
- LocalDate getDataNascimento() {
+ public LocalDate getDataNascimento() {
     return dataNascimento;
 }
  public void  setDataNascimento( LocalDate dataNascimento ) {

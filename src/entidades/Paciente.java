@@ -17,7 +17,7 @@ public Paciente() {
 
         // Verifica se o CPF já foi registrado
         if (cpfsRegistrados.contains(CPF)) {
-            throw new Exception("Erro: CPF já cadastrado!");
+            System.out.println("CPF já registrado");
         }
 
         cpfsRegistrados.add(CPF);
