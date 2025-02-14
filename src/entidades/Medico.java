@@ -14,7 +14,7 @@ public class Medico extends Pessoa {
         this.consultasAtendidas = new ArrayList<>();
     }
 
-    public Medico(String nome, String Cpf, LocalDate dataNascimento, String CRM, String especialidade) {
+    public Medico(String nome, String cpf, LocalDate dataNascimento, String CRM, String especialidade) {
         super(nome, CRM, dataNascimento);
         this.CRM = CRM;
         this.especialidade = especialidade;
