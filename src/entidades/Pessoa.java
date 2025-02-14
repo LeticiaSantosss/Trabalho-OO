@@ -4,17 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Pessoa {
-private String nome, 
-				CPF;
+private String nome; 
+private String CPF;
 private LocalDate dataNascimento;
 private List<Consulta>historicoConsultas;
-private List<Exame>historicoExames ;
+private List<Exame>historicoExames;
 private List<Pagamento>historicoPagamentos;
 
 Pessoa(){}
 Pessoa(String nome, String Cpf, LocalDate dataNascimento){
 	this.nome= nome;
-	this.CPF= Cpf;
+	this.CPF= cpf;
 	this.dataNascimento= dataNascimento;
 	this.historicoConsultas = new ArrayList<>();
 	 this.setHistoricoExames(new ArrayList<>());  // Inicialização de historicoExames
