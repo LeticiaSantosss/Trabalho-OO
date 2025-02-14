@@ -12,7 +12,7 @@ private List<Exame>historicoExames;
 private List<Pagamento>historicoPagamentos;
 
 Pessoa(){}
-Pessoa(String nome, String Cpf, LocalDate dataNascimento){
+Pessoa(String nome, String cpf, LocalDate dataNascimento){
 	this.nome= nome;
 	this.CPF= cpf;
 	this.dataNascimento= dataNascimento;
@@ -58,7 +58,7 @@ public void adicionarPagamento (Pagamento pagamento) {
 public List<Pagamento>  getPagamentosPendentes(){
 	List <Pagamento> pendentes = new ArrayList <>();
 	for(Pagamento pagamento: historicoPagamentos) {
-		if(Pagamento.getStatusPagamento())  
+		if(pagamento.getStatusPagamento())  
 			pendentes.add(pagamento);
 		
 	}return pendentes;
