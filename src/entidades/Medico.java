@@ -53,4 +53,8 @@ public class Medico extends Pessoa {
     public String toString() {
         return "Nome: " + getNome() + ", CRM: " + CRM + ", Especialidade: " + especialidade;
     }
+    public boolean verificarDisponibilidade(LocalDate dataConsulta, LocalTime horarioConsulta) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'verificarDisponibilidade'");
+    }
 }
