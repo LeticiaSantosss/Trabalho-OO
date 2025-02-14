@@ -26,4 +26,9 @@ public void realizarPagamento () {
 		statusPagamento= false;
 }
 
+public Pessoa getPaciente() {
+    // TODO Auto-generated method stub
+    throw new UnsupportedOperationException("Unimplemented method 'getPaciente'");
+}
+
 }
