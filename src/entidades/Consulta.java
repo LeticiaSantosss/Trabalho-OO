@@ -1,6 +1,7 @@
 package entidades;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Consulta extends Medico {
@@ -9,6 +10,7 @@ private LocalDate dataConsulta;
  private int duração;
  Paciente paciente;
  Medico medico;
+ Pagamento pagamento;
  private List<Exame> examesPrescritos;
  private List<String> medicamentosPrescritos;
  private double valorConsulta;
@@ -18,6 +20,9 @@ private LocalDate dataConsulta;
 	 this.setHorarioConsulta(horarioConsulta) ;
 	 this.paciente = paciente;
 	 this.medico = medico; 
+	 this.pagamento = new Pagamento(valorConsulta);
+	 this.examesPrescritos = new ArrayList<>();
+	    this.medicamentosPrescritos = new ArrayList<>();
  }
  public boolean verificarDisponibilidadeMedico() {
      return medico.getHistoricoConsultasAtendidas().stream()
@@ -27,9 +32,10 @@ private LocalDate dataConsulta;
      return paciente.getHistoricoConsultas().stream()
          .noneMatch(c -> c.getDataConsulta().equals(this.dataConsulta));
  }
- public boolean verificarEspecialidadeRequerida(String especialidadeRequerida) {
-     return medico.verificarEspecialidade(especialidadeRequerida);
- }
+ public boolean verificarEspecialidade(String especialidade) {
+	    return medico.getEspecialidade().equalsIgnoreCase(especialidade);
+	}
+
 public void prescreverExame (Exame exame) {
 	 this.examesPrescritos.add(exame);
  }
@@ -66,6 +72,12 @@ public Medico getMedico() {
 
 public Paciente getPaciente() {
     return this.paciente;
+}
+public Pagamento getPagamento() {
+    return this.pagamento;
+}
+public boolean isPagamentoRealizado() {
+    return pagamento.getStatusPagamento();
 }
 }
 

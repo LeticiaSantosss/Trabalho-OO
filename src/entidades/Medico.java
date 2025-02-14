@@ -21,10 +21,6 @@ public class Medico extends Pessoa {
         this.consultasAtendidas = new ArrayList<>();
     }
 
-    public boolean verificarEspecialidade(String especialidadeRequerida) {
-        return this.especialidade.equalsIgnoreCase(especialidadeRequerida);
-    }
-
     public List<Consulta> getHistoricoConsultasAtendidas() {
         return consultasAtendidas;
     }
@@ -33,7 +29,7 @@ public class Medico extends Pessoa {
         this.consultasAtendidas.add(consulta);
     }
 
-    // Getters e Setters
+   
     public String getCRM() {
         return CRM;
     }
