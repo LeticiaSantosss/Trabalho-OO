@@ -164,7 +164,7 @@ public class AgendamentoService {
         pacientes.add(paciente);
         System.out.println("Paciente adicionado com sucesso!");
     }
-    public Paciente buscarPacientePorCpf(String cpf) {
+    public static Paciente buscarPacientePorCpf(String cpf) {
         return pacientes.stream().filter(p -> p.getCPF().equals(cpf)).findFirst().orElse(null);
     }
     public static void atualizarPaciente(Paciente pacienteAtualizado) {
