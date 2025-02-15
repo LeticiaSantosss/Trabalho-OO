@@ -15,7 +15,7 @@ private LocalDate dataConsulta;
  private List<String> medicamentosPrescritos;
  private double valorConsulta;
  
- Consulta(LocalDate dataConsulta, LocalTime horarioConsulta, Paciente paciente, Medico medico ){
+ public Consulta(LocalDate dataConsulta, LocalTime horarioConsulta, Paciente paciente, Medico medico ){
 	 this.setDataConsulta(dataConsulta);
 	 this.setHorarioConsulta(horarioConsulta) ;
 	 this.paciente = paciente;
