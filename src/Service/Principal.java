@@ -1,19 +1,16 @@
 package Service;
 
+import entidades.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 import java.util.Scanner;
 
-import entidades.Consulta;
-import entidades.Medico;
-import entidades.Paciente;
-import entidades.Pessoa;
-
 public class Principal {
     public static void main(String[] args) throws Exception {
         Scanner scanner = new Scanner(System.in);
         AgendamentoService agendamentoService = new AgendamentoService();
+        PagamentoService pagamentoService = new PagamentoService();
 
         while (true) {
             System.out.println("\n*** Menu de Agendamento de Consultas ***");
@@ -24,7 +21,9 @@ public class Principal {
             System.out.println("5. Listar Pacientes");
             System.out.println("6. Remover Médico");
             System.out.println("7. Remover Consulta");
-            System.out.println("8. Sair");
+            System.out.println("8. Registrar Pagamento");
+            System.out.println("9. Listar Pagamentos");
+            System.out.println("10. Sair");
             System.out.print("Escolha uma opção: ");
             
             int opcao = scanner.nextInt();
@@ -44,7 +43,7 @@ public class Principal {
                     Medico medico = new Medico(nomeMedico, crm, dataNascimentoMedico, crm, especialidade);
                     AgendamentoService.adicionarMedico(medico);
                     break;
-                
+
                 case 2: // Adicionar Paciente
                     System.out.print("Digite o nome do paciente: ");
                     String nomePaciente = scanner.nextLine();
@@ -59,12 +58,11 @@ public class Principal {
 
                 case 3: // Agendar Consulta
                     System.out.print("Digite o CPF do paciente para agendar consulta: ");
-                    String cpfPaciente = scanner.nextLine();  // Use o CPF para procurar
+                    String cpfPaciente = scanner.nextLine();
                     Paciente pacienteConsulta = agendamentoService.buscarPacientePorCpf(cpfPaciente);
                     if (pacienteConsulta == null) {
                         System.out.println("Paciente não encontrado.");
                         break;
-                        
                     }
 
                     System.out.print("Digite o CRM do médico: ");
@@ -97,6 +95,7 @@ public class Principal {
                     String crmRemover = scanner.nextLine();
                     agendamentoService.removerMedico(crmRemover);
                     break;
+
                 case 7: // Remover Consulta
                     System.out.print("Digite o nome do paciente ou CRM do médico para remover consulta: ");
                     String nomeOuCrm = scanner.nextLine();
@@ -153,9 +152,36 @@ public class Principal {
                     }
                     break;
 
+                case 8: // Registrar Pagamento
+                    System.out.print("Digite o CPF do paciente para registrar pagamento: ");
+                    String cpfPacientePagamento = scanner.nextLine();
+                    Paciente pacientePagamento = agendamentoService.buscarPacientePorCpf(cpfPacientePagamento);
+                    if (pacientePagamento == null) {
+                        System.out.println("Paciente não encontrado.");
+                        break;
+                    }
 
+                    System.out.print("Digite o valor do pagamento: ");
+                    double valorPagamento = scanner.nextDouble();
+                    scanner.nextLine();  // Consumir a linha pendente após nextDouble()
+                    pagamentoService.registrarPagamento(pacientePagamento, valorPagamento);
+                    break;
 
-                case 8: // Sair
+                case 9: // Listar Pagamentos
+                    System.out.print("Digite o CPF do paciente para listar pagamentos: ");
+                    String cpfPagamentos = scanner.nextLine();
+                    List<Pagamento> pagamentos = pagamentoService.verificarPagamentosPendentes(agendamentoService.buscarPacientePorCpf(cpfPagamentos));
+                    if (pagamentos.isEmpty()) {
+                        System.out.println("Nenhum pagamento encontrado para o paciente com CPF " + cpfPagamentos);
+                    } else {
+                        System.out.println("Pagamentos pendentes:");
+                        for (Pagamento pagamento : pagamentos) {
+                            System.out.println("Valor: R$" + pagamento.getValor() + " | Status: " + pagamento.getStatusPagamento());
+                        }
+                    }
+                    break;
+
+                case 10: // Sair
                     System.out.println("Saindo...");
                     scanner.close();
                     return;
