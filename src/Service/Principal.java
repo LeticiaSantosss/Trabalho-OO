@@ -42,7 +42,7 @@ public class Principal {
                     LocalDate dataNascimentoMedico = LocalDate.parse(scanner.nextLine());
 
                     Medico medico = new Medico(nomeMedico, crm, dataNascimentoMedico, crm, especialidade);
-                    agendamentoService.adicionarMedico(medico);
+                    AgendamentoService.adicionarMedico(medico);
                     break;
                 
                 case 2: // Adicionar Paciente
@@ -58,12 +58,13 @@ public class Principal {
                     break;
 
                 case 3: // Agendar Consulta
-                    System.out.print("Digite o nome do paciente para agendar consulta: ");
-                    String pacienteNome = scanner.nextLine();
-                    Paciente pacienteConsulta = agendamentoService.buscarPacientePorCpf(pacienteNome);
+                    System.out.print("Digite o CPF do paciente para agendar consulta: ");
+                    String cpfPaciente = scanner.nextLine();  // Use o CPF para procurar
+                    Paciente pacienteConsulta = agendamentoService.buscarPacientePorCpf(cpfPaciente);
                     if (pacienteConsulta == null) {
                         System.out.println("Paciente não encontrado.");
                         break;
+                        
                     }
 
                     System.out.print("Digite o CRM do médico: ");
